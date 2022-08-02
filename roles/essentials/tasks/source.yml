@@ -1,0 +1,9 @@
+- name: Allow switch shell
+  become: true
+  shell:
+    cmd: sed -i "s/auth       required   pam_shells.so/auth       sufficient   pam_shells.so/" /etc/pam.d/chsh 
+
+- name: Select ZSH as default
+  become: true
+  shell:
+    cmd: chsh -s $(which zsh) $(whoami)

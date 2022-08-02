@@ -2,6 +2,7 @@
 - hosts: localhost
   connection: local
   roles:
+  - essentials
   - docker 
   - gcloud 
   - packer

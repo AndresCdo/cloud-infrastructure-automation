@@ -1,7 +1,4 @@
 - name: Run GCloud installation
   become: true
-  apt:
-    pkg:
-      - 'google-cloud-sdk'
-    state: latest
-    update_cache: true
+  shell:
+    cmd: snap install google-cloud-sdk --classic

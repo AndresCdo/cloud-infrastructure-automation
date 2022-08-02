@@ -1,5 +1,8 @@
 - name: Install Dependencies
   import_tasks: pre-setup.yml
-
-- name: Install Package
+  
+- name: Set ZSH as default
+  import_tasks: source.yml
+  
+- name: Install Oh-My-ZSH
   import_tasks: install.yml

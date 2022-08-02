@@ -5,4 +5,4 @@
     pkg:
       - packer
     state: latest
-    update_cache: true
+#     update_cache: true
