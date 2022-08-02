@@ -1,0 +1,8 @@
+- name: Install Dependencies
+  import_tasks: pre-setup.yml
+
+- name: Setup package source
+  import_tasks: source.yml
+
+- name: Install Package
+  import_tasks: install.yml

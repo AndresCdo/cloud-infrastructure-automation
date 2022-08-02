@@ -1,0 +1,8 @@
+
+- name: Install Packer
+  become: true
+  apt:
+    pkg:
+      - packer
+    state: latest
+    update_cache: true
