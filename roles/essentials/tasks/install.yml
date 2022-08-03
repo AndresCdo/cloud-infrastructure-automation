@@ -1,4 +1,3 @@
 - name: Run Oh-My-ZSH installation
   become: true
-  shell:
-    cmd: sh -c $(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)
+  shell: "curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -"
