@@ -5,6 +5,5 @@
       - 'apt-transport-https'
       - 'ca-certificates'
       - 'gnupg'
-      - 'snapd'
     state: latest
 #     update_cache: true
