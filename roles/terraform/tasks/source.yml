@@ -7,6 +7,11 @@
   ansible.builtin.shell: gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
   register: hashicorp_keys_fingerprint
 
+- name: Check if package source exist
+  ansible.builtin.stat:
+    path: /etc/apt/sources.list.d/hashicorp.list
+  register: package_source
+
 - name: Add the official HashiCorp repository to the system
   become: true
   ansible.builtin.shell: echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
