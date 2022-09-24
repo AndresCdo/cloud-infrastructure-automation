@@ -1,4 +1,6 @@
 - name: Install Terraform
   become: true
-  shell:
-    cmd: snap install terraform --classic
+  apt:
+    name: terraform
+    state: latest
+    update_cache: yes
