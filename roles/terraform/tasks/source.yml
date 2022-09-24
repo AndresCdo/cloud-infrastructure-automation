@@ -1,11 +1,7 @@
 - name: Install the HashiCorp GPG key
   become: true
-  ansible.builtin.shell: wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
-
-- name: Verify the key's fingerprint
-  become: true
-  ansible.builtin.shell: gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
-  register: hashicorp_keys_fingerprint
+  ansible.builtin.apt_key:
+    url: https://apt.releases.hashicorp.com/gpg
 
 - name: Check if package source exist
   ansible.builtin.stat:
@@ -15,3 +11,4 @@
 - name: Add the official HashiCorp repository to the system
   become: true
   ansible.builtin.shell: echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+  when: not package_source.stat.exists
