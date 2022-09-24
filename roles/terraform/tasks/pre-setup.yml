@@ -3,6 +3,7 @@
   apt:
     pkg:
       - "gnupg"
+      - "snap"
       - "software-properties-common"
     state: latest
-#     update_cache: true
+    update_cache: true
