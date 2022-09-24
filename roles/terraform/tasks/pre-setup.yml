@@ -7,3 +7,7 @@
       - "software-properties-common"
     state: latest
     update_cache: true
+
+- name: Set PATH
+  become: true
+  ansible.builtin.shell: PATH=$PATH:/snap/bin
