@@ -1,5 +1,8 @@
-- name: Install Dependencies
+- name: Install Terraform dependencies
   import_tasks: pre-setup.yml
 
-- name: Install Package
+- name: Setting Terraform package repository
+  import_tasks: source.yml
+
+- name: Install Terraform package
   import_tasks: install.yml
