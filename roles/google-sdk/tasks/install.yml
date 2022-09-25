@@ -1,6 +1,6 @@
 - name: Run GCloud installation
   become: true
   apt:
-    pkg:
-      - 'google-cloud-cli'
+    name: google-cloud-cli
+    state: latest
     update_cache: yes
