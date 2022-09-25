@@ -4,6 +4,6 @@
   roles:
   - essentials
   - docker 
-  - gcloud 
+  - google-sdk 
   - packer
   - terraform
