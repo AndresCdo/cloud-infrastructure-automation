@@ -2,5 +2,5 @@
   become: true
   apt:
     pkg:
-      - 'google-cloud-sdk'
+      - 'google-cloud-cli'
     update_cache: yes
