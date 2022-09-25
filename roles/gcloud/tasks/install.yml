@@ -3,3 +3,4 @@
   apt:
     pkg:
       - 'google-cloud-sdk'
+    update_cache: yes
