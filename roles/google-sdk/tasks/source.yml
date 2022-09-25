@@ -1,3 +1,8 @@
+- name: Add source key
+  become: true
+  ansible.builtin.apt_key: 
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
 - name: Check if package source exists
   become: true
   ansible.builtin.stat:
@@ -9,10 +14,6 @@
   shell:
     cmd: echo 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main' | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
   when: package_source.stat.exists
-
-- name: Add source key
-  become: true
-  shell: curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
 
 - name: Update repositories database
   become: true
