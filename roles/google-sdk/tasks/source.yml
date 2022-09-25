@@ -1,11 +1,13 @@
-- name: Check if package source exist
+- name: Check if package source exists
+  become: true
   ansible.builtin.stat:
     path: /etc/apt/sources.list.d/google-cloud-sdk.list
   register: package_source
 
 - name: Add package source
   become: true
-  shell: echo 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main' | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+  shell:
+    cmd: echo 'deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main' | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
   when: package_source.stat.exists
 
 - name: Add source key
