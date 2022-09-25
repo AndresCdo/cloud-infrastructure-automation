@@ -1,7 +1,6 @@
 - name: Install the HashiCorp GPG key
   become: true
-  ansible.builtin.apt_key:
-    url: https://apt.releases.hashicorp.com/gpg
+  ansible.builtin.shell: wget --quiet --output-document - https://apt.releases.hashicorp.com/gpg | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/hashicorp-archive-keyring.gpg --import
 
 - name: Check if package source exist
   become: true
