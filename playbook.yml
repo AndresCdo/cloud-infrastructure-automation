@@ -5,5 +5,5 @@
   - essentials
   - docker 
   - google-sdk 
-  - packer
+#  - packer
   - terraform
