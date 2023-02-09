@@ -5,6 +5,5 @@
       - 'build-essential'
       - 'vim'
       - 'curl'
-      - 'snap'
       - 'zsh'
     state: latest
