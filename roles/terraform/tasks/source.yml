@@ -3,7 +3,8 @@
   ansible.builtin.shell: wget --quiet --output-document - https://apt.releases.hashicorp.com/gpg | gpg --no-default-keyring --keyring gnupg-ring:/usr/share/keyrings/hashicorp-archive-keyring.gpg --import
 
 - name: Change key permissions
-  file:
+  become: true
+  ansible.builtin.file:
     path: /usr/share/keyrings/hashicorp-archive-keyring.gpg
     mode: 'go+r'
 
@@ -15,6 +16,6 @@
 
 - name: Add the official HashiCorp repository to the system
   become: true
-  ansible.builtin.shell: echo "deb https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+  ansible.builtin.shell: echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
   when: not package_source.stat.exists
 
