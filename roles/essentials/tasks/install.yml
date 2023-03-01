@@ -6,5 +6,5 @@
 
 - name: Run Oh-My-ZSH installation
   become: true
-  shell: "curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash -"
+  shell: "sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'"
   when: not file.stat.exists
