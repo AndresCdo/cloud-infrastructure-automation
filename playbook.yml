@@ -1,5 +1,5 @@
 ---
-- hosts: defaults
+- hosts: all
   #connection: local
   roles:
   - essentials
