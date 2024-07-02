@@ -1,0 +1,4 @@
+- name: Restart AWS CLI service
+  service:
+    name: aws-cli
+    state: restarted

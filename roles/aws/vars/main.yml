@@ -1,0 +1,4 @@
+aws_cli_url: "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip"
+aws_cli_zip_path: "/tmp/awscliv2.zip"
+aws_cli_install_dir: "/usr/local"
+aws_cli_install_script: "{{ aws_cli_install_dir }}/aws/install"

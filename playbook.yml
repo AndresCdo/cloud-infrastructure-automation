@@ -1,9 +1,10 @@
 ---
 - hosts: all
-  #connection: local
+  connection: local
   roles:
   - essentials
   - docker 
   - google-sdk 
 #  - packer
   - terraform
+  - aws

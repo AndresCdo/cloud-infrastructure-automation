@@ -1,0 +1,52 @@
+---
+- name: Check if AWS CLI is installed
+  command: aws --version
+  register: aws_cli_version
+  ignore_errors: true
+
+- name: Show AWS CLI version
+  debug:
+    var: aws_cli_version.stdout
+  when: aws_cli_version is defined
+
+- name: Download AWS CLI package
+  get_url:
+    url: "{{ aws_cli_url }}"
+    dest: "{{ aws_cli_zip_path }}"
+    mode: 0755
+  when: aws_cli_version is defined and aws_cli_version.output == ""
+  register: download_result
+
+- name: Ensure AWS CLI package is downloaded
+  when: download_result is defined
+  assert:
+    that:
+      - download_result is success
+
+- name: Unzip AWS CLI package
+  when: download_result is defined
+  unarchive:
+    src: "{{ aws_cli_zip_path }}"
+    dest: "{{ aws_cli_install_dir }}"
+    remote_src: yes
+
+- name: Ensure AWS CLI install script is executable
+  when: download_result is defined
+  file:
+    path: "{{ aws_cli_install_script }}"
+    mode: u+x
+    
+- name: Execute AWS CLI install script
+  when: download_result is defined
+  command: "{{ aws_cli_install_script }}"
+  
+  register: install_result
+  ignore_errors: true
+
+- name: Restart AWS CLI service if needed
+  when: install_result is defined
+  service:
+    name: aws-cli
+    state: restarted
+
+  
