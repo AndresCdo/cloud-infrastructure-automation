@@ -15,6 +15,7 @@
   when: not package_source.stat.exists
 
 - name: Update repositories database
+  when: not package_source.stat.exists
   become: true
   apt:
     update_cache: yes

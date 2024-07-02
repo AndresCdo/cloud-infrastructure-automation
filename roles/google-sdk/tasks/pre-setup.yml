@@ -1,9 +1,11 @@
 - name: Install dependencies for GCloud CLI
   become: true
-  apt:
-    pkg:
-      - 'apt-transport-https'
-      - 'ca-certificates'
-      - 'gnupg'
-    state: latest
-    update_cache: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - gnupg
+    - curl
+    - software-properties-common
